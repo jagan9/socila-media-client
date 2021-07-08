@@ -134,6 +134,12 @@ function Messengers(props) {
             <Paper elevation={3} style={{ padding: "10px 20px", margin: "10px", backgroundColor: "rgba(255,255,255,0.3)" }}>
                 <div>
                     {
+                        conversation === null && <h2 style={{ textAlign: "center" }}>Loading ... </h2>
+                    }
+                    {
+                        conversation?.length == 0 && <h2 style={{ textAlign: "center" }}>No users</h2>
+                    }
+                    {
                         !id && conversation && conversation.map(conv => (
                             <div
                                 key={conv._id} onClick={async () => {
@@ -181,7 +187,9 @@ function Messengers(props) {
                         </form>
                     }
                 </div>
+
             </Paper>
+
         </div >
     )
 }

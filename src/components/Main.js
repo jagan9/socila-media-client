@@ -21,6 +21,7 @@ function Main(props) {
 
     const [user, setUser] = useState(null);
     const [posts, setPosts] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     const handleClose = () => {
         props.offSnackuser();
@@ -29,7 +30,10 @@ function Main(props) {
 
     useEffect(() => {
         props.LoadUser(() => setUser((user) => user));
-        props.LoadPosts(() => setPosts(props.posts));
+        props.LoadPosts(() => {
+            setPosts(props.posts);
+            setLoading(false)
+        });
     }, []);
 
 
@@ -48,7 +52,7 @@ function Main(props) {
                             commentPost={(text, userId, postId) => props.commentPost(text, userId, postId)}
                             userid={props.user.user ? props.user.user._id : null}
                             posts={props.posts.posts}
-                            loading={props.posts.loading}
+                            loading={props.posts.loading && loading}
                             like={(id) => props.likeAndUnlikePost(id)}
                             save={(id) => props.savePost(id)}
                             deletePost={(id) => props.deletePost(id)}
@@ -61,7 +65,7 @@ function Main(props) {
                     <Auth data={props.user}>
                         <Login
                             data={props.user}
-                            LoginUser={(details) => props.LoginUser(details)} />
+                            LoginUser={(details, onsuccess) => props.LoginUser(details, onsuccess)} />
                     </Auth>
                 </Route>
 
@@ -69,7 +73,7 @@ function Main(props) {
                     <Auth data={props.user}>
                         <Signup
                             data={props.user}
-                            RegisterUser={(details) => props.RegisterUser(details)} />
+                            RegisterUser={(details, onsuccess) => props.RegisterUser(details, onsuccess)} />
                     </Auth>
                 </Route>
 
@@ -173,8 +177,8 @@ function Main(props) {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        LoginUser: (user) => dispatch(LoginUser(user)),
-        RegisterUser: (user) => dispatch(RegisterUser(user)),
+        LoginUser: (user, onsuccess) => dispatch(LoginUser(user, onsuccess)),
+        RegisterUser: (user, onsuccess) => dispatch(RegisterUser(user, onsuccess)),
         LoadUser: (onSuccess) => dispatch(LoadUser(onSuccess)),
         LogoutUser: () => dispatch(LogoutUser()),
         LoadPosts: (onSuccess) => dispatch(LoadPosts(onSuccess)),

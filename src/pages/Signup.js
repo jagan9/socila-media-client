@@ -13,14 +13,18 @@ function Signup(props) {
     const [nameerror, setNameerror] = React.useState(null);
     const [passerror, setPasserror] = React.useState(null);
     const [password, setPassword] = React.useState("");
+    const [loader, setLoader] = React.useState(false);
 
 
     const submit = () => {
+        setLoader(1)
         let validData = true;
 
         if (email.length === 0) {
             validData = false;
             setEmailerror("email required");
+            setLoader(0)
+            return;
         } else {
             if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)) {
                 validData = true;
@@ -28,12 +32,16 @@ function Signup(props) {
             } else {
                 validData = false;
                 setEmailerror("enter valid email")
+                setLoader(0)
+                return;
             }
         }
 
         if (name.length < 3) {
             validData = false;
             setNameerror("please enter name");
+            setLoader(0)
+            return;
         } else {
             validData = true;
             setNameerror(null);
@@ -42,6 +50,8 @@ function Signup(props) {
         if (password.length < 5) {
             validData = false;
             setPasserror("must be 5 characters");
+            setLoader(0)
+            return;
         } else {
             validData = true;
             setPasserror(null);
@@ -55,7 +65,7 @@ function Signup(props) {
                 img: avatar,
                 bio: "available"
             };
-            props.RegisterUser(userDetails);
+            props.RegisterUser(userDetails, () => { setLoader(0) });
         }
 
     }
@@ -89,7 +99,7 @@ function Signup(props) {
                     alignItems: "center",
                     fontSize: "17px",
                     marginBottom: "10px"
-                }}>Sign up</Button>
+                }}>{loader ? "Loading.." : "Sign up"}</Button>
                 <Link to="/login">
                     Already had an Account
                 </Link>

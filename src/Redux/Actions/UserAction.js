@@ -11,7 +11,7 @@ import { LoadPosts } from './postAction';
 const axios = require('axios');
 
 
-export const RegisterUser = newuser => {
+export const RegisterUser = (newuser, onsuccess) => {
     return (dispatch, getstate) => {
         dispatch({ type: LOADING });
         axios
@@ -20,26 +20,30 @@ export const RegisterUser = newuser => {
                 localStorage.setItem('token', user.data.token);
                 dispatch({ type: REGISTOR_USER, payload: user.data.user });
             }).catch(err => {
+                onsuccess()
                 dispatch({ type: USER_ERROR, payload: err.response.data })
             })
     }
 }
 
-export const LoginUser = (user) => {
+export const LoginUser = (user, onsuccess) => {
     return (dispatch, getstate) => {
         dispatch({ type: LOADING });
         axios.post('https://socila-media-app.herokuapp.com/api/auth/login', user).then(user => {
             if (user.data === "invalid email") {
                 dispatch({ type: USER_ERROR, payload: user.data })
+                onsuccess()
             }
             else if (user.data === "invalid password") {
                 dispatch({ type: USER_ERROR, payload: user.data })
+                onsuccess()
             } else {
                 localStorage.setItem('token', user.data.token);
                 dispatch({ type: LOGIN_USER, payload: user.data.user });
                 LoadUser(); LoadPosts();
             }
         }).catch(err => {
+            onsuccess()
             dispatch({ type: USER_ERROR, payload: err.response.data })
         })
     }

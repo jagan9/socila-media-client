@@ -10,7 +10,6 @@ function Home(props) {
     const [open, setOpen] = useState(false);
     const [snackText, setSnackText] = useState("");
 
-
     const handleClose = () => {
         setOpen(false)
     }

@@ -18,7 +18,7 @@ function App() {
   for (var i = 0; i < numberofbubble; i++) {
     let x = Math.floor(Math.random() * 100) - 10;
     let y = Math.floor(Math.random() * 100) - 10;
-    let r = Math.floor(Math.random() * 150) + 60;
+    let r = Math.floor(Math.random() * 130) + 40;
     let ra = Math.floor(Math.random() * 255);
     let rb = Math.floor(Math.random() * 255);
     let rc = Math.floor(Math.random() * 255);
@@ -42,7 +42,7 @@ function App() {
       </Router>
       <div style={{ backgroundAttachment: "fixed", backgroundColor: "rgba(254,254,254,0.2)", position: "fixed", top: "0", left: "0", width: "100%", height: "100%", zIndex: "-1" }}>
         {
-          bubbles.map((bubble, i) => (<div className="rotator animation" key={i} style={{
+          bubbles.map((bubble, i) => (<div key={i} style={{
             opacity: "0.3",
             zIndex: "-1",
 

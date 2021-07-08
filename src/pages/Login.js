@@ -7,16 +7,20 @@ import { Redirect } from 'react-router-dom';
 function Login(props) {
 
     const [email, setEmail] = React.useState("");
+    const [loader, setLoader] = React.useState(false);
     const [emailerror, setEmailerror] = React.useState(null);
     const [passerror, setPasserror] = React.useState(null);
     const [password, setPassword] = React.useState("");
 
     const submit = () => {
+        setLoader(1);
         let validData = true;
 
         if (email.length === 0) {
             validData = false;
             setEmailerror("email required");
+            setLoader(0)
+            return;
         } else {
             if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)) {
                 validData = true;
@@ -24,12 +28,17 @@ function Login(props) {
             } else {
                 validData = false;
                 setEmailerror("enter valid email")
+                setLoader(0)
+                return;
             }
         }
 
         if (password.length < 4) {
             validData = false;
+
             setPasserror("must be 5 characters");
+            setLoader(0)
+            return;
         } else {
             validData = true;
             setPasserror(null);
@@ -40,7 +49,7 @@ function Login(props) {
                 email: email,
                 password: password
             };
-            props.LoginUser(userDetails);
+            props.LoginUser(userDetails, () => { setLoader(0) });
         }
 
     }
@@ -73,7 +82,7 @@ function Login(props) {
                     alignItems: "center",
                     fontSize: "17px",
                     marginBottom: "10px"
-                }}>Login</Button>
+                }}>{loader ? "Loading.." : "Login"}</Button>
                 <Link to="/signup">
                     Don't have an Accout
                 </Link>
