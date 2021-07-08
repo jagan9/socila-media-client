@@ -13,7 +13,7 @@ function AllUsers() {
 
     useEffect(async () => {
         const token = localStorage.getItem("token");
-        const users = await axios.get('/api/auth/allusers', {
+        const users = await axios.get('https://socila-media-app.herokuapp.com/api/auth/allusers', {
             headers: {
                 "x-auth-token": token
             }
