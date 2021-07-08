@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { format } from 'timeago.js';
-import axios from 'axios';
 
 function Message(props) {
     const [user, setUser] = useState(null)

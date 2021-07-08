@@ -7,7 +7,7 @@ function ChatUser(props) {
     useEffect(() => {
         const getUser = async () => {
             let userID = props.conv.members.find(user => user !== props.currentUser._id);
-            const user = await axios.get(`/api/auth/user/${userID}`);
+            const user = await axios.get(`https://socila-media-app.herokuapp.com/api/auth/user/${userID}`);
             setUser(user.data[0])
         }
 

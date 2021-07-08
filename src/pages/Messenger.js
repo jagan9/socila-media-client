@@ -51,11 +51,11 @@ function Messengers(props) {
                     senderId: props.currentUser._id,
                     receiverId: id
                 }
-                axios.post('/api/conversation', data)
+                axios.post('https://socila-media-app.herokuapp.com/api/conversation', data)
                     .then(res => {
                         ;
                         let url = res.data._id || res.data[0]._id
-                        axios.get(`/api/message/${url}`)
+                        axios.get(`https://socila-media-app.herokuapp.com/api/message/${url}`)
                             .then(res => setMessages(res.data))
                             .catch(err => console.log(err))
                         setConv(res.data[0])
@@ -65,7 +65,7 @@ function Messengers(props) {
             else {
                 setMessages(null)
                 axios.
-                    get(`/api/conversation/${props.currentUser._id}`)
+                    get(`https://socila-media-app.herokuapp.com/api/conversation/${props.currentUser._id}`)
                     .then(res => {
                         setConversation(res.data)
                     })
@@ -82,10 +82,10 @@ function Messengers(props) {
                     senderId: props.currentUser._id,
                     receiverId: id
                 }
-                axios.post('/api/conversation', data)
+                axios.post('https://socila-media-app.herokuapp.com/api/conversation', data)
                     .then(res => {
                         let url = res.data._id || res.data[0]._id;
-                        axios.get(`/api/message/${url}`)
+                        axios.get(`https://socila-media-app.herokuapp.com/api/message/${url}`)
                             .then(res => setMessages(res.data))
                             .catch(err => console.log(err))
                         setConv(res.data[0])
@@ -94,7 +94,7 @@ function Messengers(props) {
             }
             else {
                 setMessages(null)
-                axios.get(`/api/conversation/${props.currentUser._id}`)
+                axios.get(`https://socila-media-app.herokuapp.com/api/conversation/${props.currentUser._id}`)
                     .then(res => {
                         setConversation(res.data);
                     })
@@ -119,7 +119,7 @@ function Messengers(props) {
             //     text: message
             // })
 
-            axios.post('/api/message', data)
+            axios.post('https://socila-media-app.herokuapp.com/api/message', data)
                 .then(res => {
                     const msgs = [...messages, res.data];
                     setMessages(msgs);

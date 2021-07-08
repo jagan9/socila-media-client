@@ -4,7 +4,7 @@ export const LoadPosts = (onSuccess, onError) => {
     return async (dispatch, getState) => {
         dispatch({ type: "FETCHING_POST" });
         const token = localStorage.getItem('token');
-        const posts = await axios.get('/api/post/allposts', {
+        const posts = await axios.get('https://socila-media-app.herokuapp.com/api/post/allposts', {
             headers: {
                 "x-auth-token": token
             }
@@ -19,7 +19,7 @@ export const likeAndUnlikePost = (id) => {
         try {
             dispatch({ type: "SNAK_TRUE", payload: "loading...." });
             const token = localStorage.getItem("token");
-            const post = await axios.post(`/api/post/like/${id}`, {}, {
+            const post = await axios.post(`https://socila-media-app.herokuapp.com/api/post/like/${id}`, {}, {
                 headers: {
                     "x-auth-token": token
                 }
@@ -37,7 +37,7 @@ export const savePost = (id) => {
         try {
             dispatch({ type: "SNAK_TRUE", payload: "loading...." });
             const token = localStorage.getItem("token");
-            const post = await axios.post(`/api/post/save/${id}`, {}, {
+            const post = await axios.post(`https://socila-media-app.herokuapp.com/api/post/save/${id}`, {}, {
                 headers: {
                     "x-auth-token": token
                 }
@@ -54,7 +54,7 @@ export const commentPost = (text, userId, postId) => {
     return async (dispatch, getState) => {
         try {
             const token = localStorage.getItem("token");
-            const post = await axios.post(`/api/post/comment/${postId}`, { text, userId }, {
+            const post = await axios.post(`https://socila-media-app.herokuapp.com/api/post/comment/${postId}`, { text, userId }, {
                 headers: {
                     "x-auth-token": token
                 }
@@ -70,7 +70,7 @@ export const deletePost = (postId) => {
     return async (dispatch, getState) => {
         try {
             const token = localStorage.getItem("token");
-            const post = await axios.delete(`/api/post/deletepost/${postId}`, {
+            const post = await axios.delete(`https://socila-media-app.herokuapp.com/api/post/deletepost/${postId}`, {
                 headers: {
                     "x-auth-token": token
                 }
@@ -99,7 +99,7 @@ export const createPost = (data) => {
     return async (dispatch, getState) => {
         try {
             const token = localStorage.getItem("token");
-            const post = await axios.post("/api/post/createpost", data, {
+            const post = await axios.post("https://socila-media-app.herokuapp.com/api/post/createpost", data, {
                 headers: {
                     "x-auth-token": token
                 }
@@ -115,7 +115,7 @@ export const updatePost = (id, data) => {
     return async (dispatch, getState) => {
         try {
             const token = localStorage.getItem("token");
-            const post = await axios.put(`/api/post/updatepost/${id}`, data, {
+            const post = await axios.put(`https://socila-media-app.herokuapp.com/api/post/updatepost/${id}`, data, {
                 headers: {
                     "x-auth-token": token
                 }

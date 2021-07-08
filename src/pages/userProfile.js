@@ -13,7 +13,7 @@ function UserProfile(props) {
 
 
     useEffect(async () => {
-        axios.get(`/api/auth/getuser/${id}`)
+        axios.get(`https://socila-media-app.herokuapp.com/api/auth/getuser/${id}`)
             .then(res => {
                 setUser(res.data);
                 if (props?.currentUser?._id === res.data.user._id) {
