@@ -15,7 +15,7 @@ export const RegisterUser = newuser => {
     return (dispatch, getstate) => {
         dispatch({ type: LOADING });
         axios
-            .post('/api/auth/registor', newuser)
+            .post('https://socila-media-app.herokuapp.com/api/auth/registor', newuser)
             .then(user => {
                 localStorage.setItem('token', user.data.token);
                 dispatch({ type: REGISTOR_USER, payload: user.data.user });
@@ -28,7 +28,7 @@ export const RegisterUser = newuser => {
 export const LoginUser = (user) => {
     return (dispatch, getstate) => {
         dispatch({ type: LOADING });
-        axios.post('/api/auth/login', user).then(user => {
+        axios.post('https://socila-media-app.herokuapp.com/api/auth/login', user).then(user => {
             if (user.data === "invalid email") {
                 dispatch({ type: USER_ERROR, payload: user.data })
             }
@@ -51,7 +51,7 @@ export const LoadUser = (onSuccess) => {
         const token = localStorage.getItem("token");
         if (token) {
             axios
-                .get('/api/auth/user', {
+                .get('https://socila-media-app.herokuapp.com/api/auth/user', {
                     headers: {
                         "x-auth-token": token
                     }
@@ -90,7 +90,7 @@ export const handleFollow = (id) => {
     return async (dispatch, getstate) => {
         try {
             const token = localStorage.getItem("token");
-            const user = await axios.put(`/api/auth/follow/${id}`, { id }, {
+            const user = await axios.put(`https://socila-media-app.herokuapp.com/api/auth/follow/${id}`, { id }, {
                 headers: {
                     "x-auth-token": token
                 }
@@ -107,7 +107,7 @@ export const updateProfile = (data, onSuccess) => {
         try {
             const token = localStorage.getItem("token");
             console.log("hi ")
-            const updatedUser = await axios.put('/api/auth/update_user', data, {
+            const updatedUser = await axios.put('https://socila-media-app.herokuapp.com/api/auth/update_user', data, {
                 headers: {
                     "x-auth-token": token
                 }
