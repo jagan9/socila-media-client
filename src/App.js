@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, HashRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import Store from './Redux/Store';
 import Main from './components/Main';
@@ -35,11 +35,11 @@ function App() {
   }
   return (
     <div className="App">
-      <Router>
+      <HashRouter>
         <Provider store={Store}>
           <Main />
         </Provider>
-      </Router>
+      </HashRouter>
       <div style={{ backgroundAttachment: "fixed", backgroundColor: "rgba(254,254,254,0.2)", position: "fixed", top: "0", left: "0", width: "100%", height: "100%", zIndex: "-1" }}>
         {
           bubbles.map((bubble, i) => (<div key={i} style={{
