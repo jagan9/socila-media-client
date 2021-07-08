@@ -4,3 +4,126 @@
     box-sizing: border-box;
     /* font-family: 'Baloo Tammudu 2', cursive; */
 }
+
+.App{
+    min-height: 100vh;
+    padding-bottom: 40px;
+    
+}
+
+.cir1{
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    opacity: 0.3;
+    z-index: -1;
+}
+
+.cir2{
+    position: absolute;
+    top: 20%;
+    left: 25%;
+    opacity: 0.3;
+    z-index: -1;
+}
+.cir3{
+    position: absolute;
+    top: 25%;
+    right: -5%;
+    opacity: 0.3;
+    z-index: -1;
+}
+.cir4{
+    position: absolute;
+    top: 60%;
+    right: 5%;
+    opacity: 0.3;
+    z-index: -1;
+}
+.cir5{
+    position: absolute;
+    top: 78%;
+    right: 10%;
+    opacity: 0.3;
+    z-index: -1;
+}
+.cir6{
+    position: absolute;
+    top: 90%;
+    left: 5%;
+    opacity: 0.3;
+    z-index: -1;
+}
+
+.cir7{
+    position: absolute;
+    top: 40%;
+    left: -5%;
+    opacity: 0.3;
+    z-index: -1;
+}
+.cir8{
+    position: absolute;
+    top: 76%;
+    left: 56%;
+    opacity: 0.3;
+    z-index: -1;
+}
+
+.cir9{
+    position: absolute;
+    top: 54%;
+    left: 30%;
+    opacity: 0.3;
+    z-index: -1;
+}
+.rotator {
+    width: 100px;
+    height: 100px;
+    margin: 20px;
+    border-radius: 50%;
+  }
+  .transition {
+    -webkit-transition: all 1000s linear;
+    -moz-transition: all 1000s linear;
+    -ms-transition: all 1000s linear;
+    -o-transition: all 1000s linear;
+    transition: all 1000s linear;
+  }
+  .translateAnimationClass { 
+    -webkit-transform: rotateX(43200deg) rotateY(14400deg);
+    -moz-transform: rotateX(43200deg) rotateY(14400deg);
+    -ms-transform: rotateX(43200deg) rotateY(14400deg);
+    -o-transform: rotateX(43200deg) rotateY(14400deg);
+    transform: rotateX(43200deg) rotateY(14400deg); 
+  }
+  .animation {
+    -webkit-animation: rotator 25s linear infinite;
+    -moz-animation: rotator 25s linear infinite;
+    -ms-animation: rotator 25s linear infinite;
+    -o-animation: rotator 25s linear infinite;
+    animation: rotator 25s linear infinite;
+  }
+  
+  @-webkit-keyframes rotator {
+    0%   { -webkit-transform: rotateX(0deg)    rotateY(0deg);    }
+    100% { -webkit-transform: rotateX(1080deg) rotateY(360deg);  }
+  }
+  @-moz-keyframes rotator {
+    0%   { -moz-transform: rotateX(0deg)    rotateY(0deg);    }
+    100% { -moz-transform: rotateX(1080deg) rotateY(360deg);  }
+  }
+  @-ms-keyframes rotator {
+    0%   { -ms-transform: rotateX(0deg)    rotateY(0deg);    }
+    100% { -ms-transform: rotateX(1080deg) rotateY(360deg);  }
+  }
+  @-o-keyframes rotator {
+    0%   { -o-transform: rotateX(0deg)    rotateY(0deg);    }
+    100% { -o-transform: rotateX(1080deg) rotateY(360deg);  }
+  }
+  @keyframes rotator {
+    0%   { transform: rotateX(0deg)    rotateY(0deg);    }
+    100% { transform: rotateX(1080deg) rotateY(360deg);  }
+  }
+
+  

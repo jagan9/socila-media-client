@@ -194,8 +194,8 @@ function Post(props) {
 
                 props.post ?
 
-                    <div style={{ maxWidth: "600px", margin: "20px auto" }}>
-                        <Paper elevation={3} style={{ padding: "20px", margin: "10px" }}>
+                    <div style={{ maxWidth: "600px", margin: "20px auto", zIndex: "2" }}>
+                        <Paper elevation={3} style={{ padding: "20px", margin: "10px", backgroundColor: "rgba(255,255,255,0.3)" }}>
                             <div style={{ marginBottom: "20px", display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center" }} >
                                 <div onClick={() => history.push(`/user/${props.post.postedBy._id}`)} style={{ display: "flex", cursor: "pointer", flexDirection: "row", alignItems: "center" }}>
                                     <img alt="logo" src={props?.post?.postedBy?.img} height="45px" width="45px" style={{ objectFit: "cover", borderRadius: "50%", marginRight: "10px" }} />

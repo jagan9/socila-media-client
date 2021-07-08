@@ -32,6 +32,8 @@ function Main(props) {
         props.LoadPosts(() => setPosts(props.posts));
     }, []);
 
+
+
     return (
 
         <div className="App">
@@ -90,6 +92,8 @@ function Main(props) {
                     <Auth home="home">
                         <Singlepost
                             userId={props.user.user ? props.user.user._id : null}
+                            deletePost={(id) => props.deletePost(id)}
+                            updatePost={(id, data) => props.updatePost(id, data)}
                             commentPost={(text, userId, postId) => props.commentPost(text, userId, postId)}
                             posts={props.posts.posts ? props.posts.posts : []}
                             like={(id) => props.likeAndUnlikePost(id)}
@@ -102,6 +106,7 @@ function Main(props) {
                         <Singlepost
                             userId={props.user.user ? props.user.user._id : null}
                             deletePost={(id) => props.deletePost(id)}
+                            updatePost={(id, data) => props.updatePost(id, data)}
                             commentPost={(text, userId, postId) => props.commentPost(text, userId, postId)}
                             posts={props.posts.posts ? props.posts.posts : []}
                             like={(id) => props.likeAndUnlikePost(id)}

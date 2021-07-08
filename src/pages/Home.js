@@ -82,8 +82,8 @@ function Home(props) {
 
     return (
         <div>
-            <div style={{ maxWidth: "600px", margin: "20px auto" }}>
-                <Paper elevation={3} style={{ padding: "20px 10px" }}>
+            <div style={{ maxWidth: "600px", margin: "20px auto", zIndex: "1" }}>
+                <Paper elevation={3} style={{ padding: "20px 10px", backgroundColor: "rgba(255,255,255,0.3)" }}>
                     <input type="file" onChange={(e) => setImage(e.target.files[0])} />
                     <button onClick={() => PostDetails()} style={{ borderRadius: "5px", cursor: "pointer", padding: "10px 20px", backgroundColor: "MediumSeaGreen", float: "right", border: "none", color: "#fff" }} >Post It</button>
                     <br /><br /><br />

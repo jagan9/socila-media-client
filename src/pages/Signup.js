@@ -64,10 +64,11 @@ function Signup(props) {
             marginTop: "50px",
             maxWidth: "500px",
             textAlign: "center"
+            , zIndex: "1"
         }}
         >
             <Paper style={{
-                padding: "10px 20px 40px 20px"
+                padding: "10px 20px 40px 20px", backgroundColor: "rgba(255,255,255,0.3)"
             }}
                 elevation={3}>
                 <img

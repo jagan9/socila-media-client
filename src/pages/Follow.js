@@ -66,8 +66,8 @@ function Follow(props) {
     }, [])
 
     return (
-        <div style={{ maxWidth: "600px", margin: "20px auto" }}>
-            <Paper elevation={3} style={{ padding: "20px", margin: "10px" }}>
+        <div style={{ maxWidth: "600px", margin: "20px auto", zIndex: "2" }}>
+            <Paper elevation={3} style={{ padding: "20px", margin: "10px", backgroundColor: "rgba(255,255,255,0.3)" }}>
                 <div className={classes.root}>
                     <AppBar style={{ backgroundColor: "#fff", color: "black", marginTop: "15px" }} position="static">
                         <Tabs value={value} onChange={handleChange} aria-label="wrapped label tabs example">

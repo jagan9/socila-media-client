@@ -130,8 +130,8 @@ function Messengers(props) {
     }
 
     return (
-        <div style={{ maxWidth: "600px", margin: "10px auto", overflowY: "auto", WebkitOverflowScrolling: "touch" }}>
-            <Paper elevation={3} style={{ padding: "10px 20px", margin: "10px" }}>
+        <div style={{ maxWidth: "600px", zIndex: "1", margin: "10px auto", overflowY: "auto", WebkitOverflowScrolling: "touch" }}>
+            <Paper elevation={3} style={{ padding: "10px 20px", margin: "10px", backgroundColor: "rgba(255,255,255,0.3)" }}>
                 <div>
                     {
                         !id && conversation && conversation.map(conv => (
@@ -139,9 +139,10 @@ function Messengers(props) {
                                 key={conv._id} onClick={async () => {
                                     setConv(conv);
                                     let userID = conv.members.find(user => user !== props.currentUser._id);
+                                    history.push(`/message/${userID}`)
                                     const user = await axios.get(`/api/auth/user/${userID}`);
                                     setImg(user.data[0].img)
-                                    history.push(`/message/${userID}`)
+
                                 }}>
                                 <ChatUser conv={conv} key={conv._id} currentUser={props.currentUser} />
                             </div>
@@ -181,7 +182,7 @@ function Messengers(props) {
                     }
                 </div>
             </Paper>
-        </div>
+        </div >
     )
 }
 

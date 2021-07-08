@@ -32,8 +32,8 @@ function AllUsers() {
         }
     }
     return (
-        <div style={{ maxWidth: "600px", margin: "20px auto" }}>
-            <Paper elevation={3} style={{ padding: "20px", margin: "10px" }}>
+        <div style={{ maxWidth: "600px", margin: "20px auto", zIndex: "2" }}>
+            <Paper elevation={3} style={{ padding: "20px", margin: "10px", backgroundColor: "rgba(255,255,255,0.3)" }}>
                 <form onSubmit={(e) => { e.preventDefault(); searchUser(e) }}>
                     <Input
                         value={searchText}

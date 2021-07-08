@@ -144,8 +144,8 @@ function Profile(props) {
         <div>
             {
                 props.data && props.posts ?
-                    <div style={{ margin: "30px auto", maxWidth: "600px" }}>
-                        <Paper elevation={3} style={{ padding: "20px 10px", margin: "10px" }}>
+                    <div style={{ margin: "30px auto", maxWidth: "600px", zIndex: "1" }}>
+                        <Paper elevation={3} style={{ padding: "20px 10px", margin: "10px", backgroundColor: "rgba(255,255,255,0.3)" }}>
                             <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
                                 <img alt="logo" src={props.data.img} height="120px" width="120px" style={{ objectFit: "cover", borderRadius: "50%", marginRight: "10px" }} />
                                 <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", textAlign: "center" }}>
