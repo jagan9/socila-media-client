@@ -43,7 +43,7 @@ export const postReducer = (state = initState, action) => {
             }
         case "SAVEPOST":
             const posts = state.posts;
-            posts.push(action.payload[0]);
+            posts.unshift(action.payload[0]);
             return {
                 ...state,
                 posts

@@ -57,7 +57,7 @@ function Main(props) {
                             save={(id) => props.savePost(id)}
                             deletePost={(id) => props.deletePost(id)}
                             updatePost={(id, data) => props.updatePost(id, data)}
-                            createPost={(data) => props.createPost(data)} />
+                            createPost={(data, onSuccess) => props.createPost(data, onSuccess)} />
                     </Auth>
                 </Route>
 
@@ -186,7 +186,7 @@ const mapDispatchToProps = (dispatch) => {
         savePost: (id) => dispatch(savePost(id)),
         offSnack: () => dispatch(offSnack()),
         offSnackuser: () => dispatch(offSnackuser()),
-        createPost: (data) => dispatch(createPost(data)),
+        createPost: (data, onSuccess) => dispatch(createPost(data, onSuccess)),
         deletePost: (id) => dispatch(deletePost(id)),
         updatePost: (id, data) => dispatch(updatePost(id, data)),
         handleFollow: (id) => dispatch(handleFollow(id)),

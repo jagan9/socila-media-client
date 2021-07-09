@@ -9,6 +9,8 @@ function Home(props) {
     const [textError, setTextError] = useState(null);
     const [open, setOpen] = useState(false);
     const [snackText, setSnackText] = useState("");
+    const [open1, setOpen1] = useState(false);
+    const [snackText1, setSnackText1] = useState("");
 
     const handleClose = () => {
         setOpen(false)
@@ -55,8 +57,8 @@ function Home(props) {
         }
 
         if (validData) {
-            setOpen(true);
-            setSnackText("Posting...");
+            setOpen1(true);
+            setSnackText1("Posting...");
             fetch("	https://api.cloudinary.com/v1_1/djqrcbjmu/image/upload", {
                 method: "post",
                 body: data
@@ -66,11 +68,12 @@ function Home(props) {
                     const Data = {};
                     Data["desc"] = text;
                     Data["img"] = data.url
-                    setOpen(true);
-                    setSnackText("Posted yayu");
-                    setImage(null);
-                    setText("");
-                    props.createPost(Data)
+                    setSnackText1("Posted yayu");
+                    props.createPost(Data, () => {
+                        setOpen1(false);
+                        setImage(null);
+                        setText("");
+                    })
                 })
                 .catch(err => console.log(err));
         }
@@ -108,6 +111,7 @@ function Home(props) {
             </div>
             {props.posts.map((post, index) => (
                 <Post
+                    data-aos="fade-up"
                     updatePost={(id, data) => props.updatePost(id, data)}
                     userId={props.userid}
                     deletePost={(id) => props.deletePost(id)}
@@ -126,6 +130,15 @@ function Home(props) {
                 autoHideDuration={3000}
                 onClose={handleClose}
                 message={snackText}
+            />
+            <Snackbar
+                anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                }}
+                open={open1}
+                onClose={handleClose}
+                message={snackText1}
             />
 
         </div>

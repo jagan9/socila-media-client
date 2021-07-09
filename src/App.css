@@ -16,4 +16,18 @@
         font-size: 13px;
     }
 }
+::-webkit-scrollbar {
+    height: 8px;
+    width: 10px;
+}
+
+ ::-webkit-scrollbar-track {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+ ::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background-color:#f87171;
+}
 

@@ -95,7 +95,7 @@ export const offSnack = () => {
     }
 }
 
-export const createPost = (data) => {
+export const createPost = (data, onSuccess) => {
     return async (dispatch, getState) => {
         try {
             const token = localStorage.getItem("token");
@@ -104,8 +104,10 @@ export const createPost = (data) => {
                     "x-auth-token": token
                 }
             });
-            dispatch({ type: "SAVEPOST", payload: post.data })
+            dispatch({ type: "SAVEPOST", payload: post.data });
+            onSuccess();
         } catch (err) {
+            onSuccess();
             console.log(err);
         }
     }
