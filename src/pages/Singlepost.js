@@ -67,7 +67,6 @@ function Singlepost(props) {
 
     const [anchorEl, setAnchorEl] = useState(null);
     const [comtext, setComtext] = useState("")
-    const [commentError, setCommentError] = useState(null);
     const [model, setModel] = useState(false);
     const [image, setImage] = useState(null);
     const [open, setOpen] = useState(false);
@@ -141,7 +140,8 @@ function Singlepost(props) {
 
             if (text.length < 2) {
                 validData = false;
-                setTextError("At least two letters")
+                setTextError("At least two letters");
+                return;
             } else {
                 validData = true;
                 setTextError(null);
@@ -151,6 +151,7 @@ function Singlepost(props) {
                 validData = false;
                 setOpen(true);
                 setSnackText("image Required")
+                return;
             } else {
                 validData = true;
                 setOpen(false);
@@ -167,7 +168,7 @@ function Singlepost(props) {
                     .then(data => {
                         const Data = {};
                         Data["desc"] = text;
-                        Data["img"] = data.url
+                        Data["img"] = data.secure_url
                         setOpen(true);
                         setSnackText("Posted yayu");
                         setImage(null);
@@ -188,7 +189,7 @@ function Singlepost(props) {
         <div>
             {
                 Post[0] ?
-                    <div style={{ maxWidth: "600px", margin: "20px auto", zIndex: "1" }}>
+                    <div data-aos="fade-up-right" style={{ maxWidth: "600px", margin: "20px auto", zIndex: "1" }}>
                         <Paper elevation={3} style={{ padding: "20px", margin: "10px", backgroundColor: "rgba(255,255,255,0.3)" }}>
                             <div style={{ marginBottom: "20px", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }} >
                                 <div onClick={() => history.push(`/user/${Post[0].postedBy._id}`)} style={{ display: "flex", flexDirection: "row", cursor: "pointer", alignItems: "center" }}>
@@ -255,11 +256,12 @@ function Singlepost(props) {
                             <MenuItem onClick={() => handleViewAndDelete(Post[0].postedBy._id, props.userId === Post[0].postedBy._id, Post[0]._id)}>{props.userId === Post[0].postedBy._id ? "delete post" : "view profile"} </MenuItem>
                             <MenuItem onClick={() => handleEditAndFollow(Post[0].postedBy._id, props.userId === Post[0].postedBy._id, Post[0])}>{props.userId === Post[0].postedBy._id ? "edit post" : "follow"}</MenuItem>
                         </Menu>
-                        <Dialog onClose={handleModelclose} aria-labelledby="customized-dialog-title" open={model}>
+                        <Dialog style={{ margin: "-20px" }} onClose={handleModelclose} aria-labelledby="customized-dialog-title" open={model}>
                             <DialogTitle id="customized-dialog-title" onClose={handleModelclose}>
                                 <b>Edit Post</b>
                             </DialogTitle>
                             <DialogContent dividers>
+                                <p style={{ opacity: "0.7" }}><b>NOTE: </b>High resolution image takes much to upload, please be patient</p><br />
                                 <input type="file" onChange={(e) => { setImage(e.target.files[0]); setValid(true) }} /><br /><br />
                                 <img width="300px" height="300px" style={{ textAlign: "center", objectFit: "cover", cursor: "pointer" }} alt="img" src={uploadImageURL(image)} />
                                 <br /><br />

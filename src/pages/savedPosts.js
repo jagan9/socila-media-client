@@ -18,7 +18,7 @@ function savedPosts(props) {
 
     if (props.user.saved.length === 0) {
         return (
-            <div style={{ margin: "30px auto", maxWidth: "600px" }}>
+            <div data-aos="flip-left" style={{ margin: "30px auto", maxWidth: "600px" }}>
                 <Paper elevation={3} style={{ margin: "10px", padding: "20px 10px" }}>
                     <h2 style={{ marginLeft: "10px" }}>Your saved Posts</h2><br /><br />
                     <div style={{ textAlign: "center", display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
@@ -29,10 +29,10 @@ function savedPosts(props) {
         )
     }
     return (
-        <div style={{ margin: "30px auto", maxWidth: "600px", zIndex: "1" }}>
+        <div data-aos="flip-right" style={{ margin: "30px auto", maxWidth: "600px", zIndex: "1" }}>
             <Paper elevation={3} style={{ margin: "10px", padding: "20px 10px", backgroundColor: "rgba(255,255,255,0.3)" }}>
                 <h2 style={{ marginLeft: "10px" }}>Your saved Posts</h2>
-                <div style={{ textAlign: "center", display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
+                <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
                     {props.user.saved.map((post, index) => (
                         <PostImg post={post} key={index} />
                     ))}

@@ -9,11 +9,11 @@ function PostImg(props) {
     }
 
     return (
-        <div style={{ padding: "10px" }}>
+        <div style={{ padding: "5px 5px" }}>
             <img onClick={() => handleClick(props.post._id)}
                 alt="post"
                 src={props.post.img}
-                style={{ objectFit: "cover", height: "165px", width: "165px", cursor: "pointer" }} />
+                style={{ objectFit: "cover", height: "150px", width: "150px", cursor: "pointer" }} />
         </div>
     )
 }

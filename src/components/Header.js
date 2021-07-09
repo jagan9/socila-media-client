@@ -1,7 +1,4 @@
-import { Backdrop } from '@material-ui/core'
 import React from 'react';
-import logo1 from '../Media/logo1.jpg';
-import CircularProgress from '@material-ui/core/CircularProgress'
 import { Link } from 'react-router-dom';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
@@ -109,7 +106,7 @@ function Header(props) {
             }}>
                 <div style={{ marginRight: "0px" }}>
                     <Link to="/" style={{ textDecoration: "none", color: "#fff" }} >
-                        <h1>Chat App</h1>
+                        <h1 style={{ fontFamily: "sans-serif" }}>Chat <span style={{ color: "#05144E " }}>App</span></h1>
                     </Link>
                 </div>
                 <div>

@@ -70,7 +70,7 @@ function Signup(props) {
 
     }
     return (
-        <Container style={{
+        <Container data-aos="zoom-in-up" style={{
             marginTop: "50px",
             maxWidth: "500px",
             textAlign: "center"

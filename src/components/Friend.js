@@ -5,7 +5,7 @@ function Friend(props) {
     let history = useHistory();
 
     return (
-        <div style={{ padding: "10px 0px" }}>
+        <div style={{ padding: "10px 0px", backgroundColor: "rgba(255,255,255,0.7)" }}>
             <div onClick={() => history.push(`/user/${props.data._id}`)} style={{ cursor: "pointer", display: "flex", flexDirection: "row" }}>
                 <div>
                     <img alt="logo" src={props?.data?.img} height="55px" width="55px" style={{ objectFit: "cover", borderRadius: "50%", marginRight: "10px" }} />

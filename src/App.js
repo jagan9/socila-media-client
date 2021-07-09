@@ -1,17 +1,17 @@
 import './App.css';
-import { BrowserRouter as Router, HashRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import Store from './Redux/Store';
 import Main from './components/Main';
-import circle1 from './Media/circle1.png';
-import circle2 from './Media/circle2.png';
-import circle3 from './Media/circle3.png';
-import circle4 from './Media/circle4.png';
-import circle5 from './Media/circle5.png';
-import circle6 from './Media/circle6.png';
+import 'aos/dist/aos.css';
+import AOS from 'aos'
 
 function App() {
-
+  AOS.init({
+    easing: 'ease-in-out-back',
+    duration: 1000,
+    offset: 0,
+  });
   let numberofbubble = Math.floor(Math.random() * 8) + 5;
   console.log(numberofbubble)
   let bubbles = [];

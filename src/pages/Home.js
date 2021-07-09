@@ -37,7 +37,8 @@ function Home(props) {
 
         if (text.length < 2) {
             validData = false;
-            setTextError("At least two letters")
+            setTextError("At least two letters");
+            return;
         } else {
             validData = true;
             setTextError(null);
@@ -46,7 +47,8 @@ function Home(props) {
         if (image === null) {
             validData = false;
             setOpen(true);
-            setSnackText("image Required")
+            setSnackText("image Required");
+            return;
         } else {
             validData = true;
             setOpen(false);
@@ -81,14 +83,14 @@ function Home(props) {
 
     return (
         <div>
-            <div style={{ maxWidth: "600px", margin: "20px auto", zIndex: "1" }}>
-                <Paper elevation={3} style={{ padding: "20px 10px", backgroundColor: "rgba(255,255,255,0.3)" }}>
+            <div data-aos="zoom-in-up" style={{ maxWidth: "600px", margin: "20px auto", zIndex: "1" }}>
+                <Paper elevation={3} style={{ padding: "20px 10px", margin: "0px 5px", backgroundColor: "rgba(255,255,255,0.3)" }}>
                     <input type="file" onChange={(e) => setImage(e.target.files[0])} />
                     <button onClick={() => PostDetails()} style={{ borderRadius: "5px", cursor: "pointer", padding: "10px 20px", backgroundColor: "MediumSeaGreen", float: "right", border: "none", color: "#fff" }} >Post It</button>
                     <br /><br /><br />
                     {
                         image &&
-                        <img style={{ width: "100%", height: "350px" }} src={uploadImageURL(image)} />
+                        <img alt="img" style={{ width: "100%", height: "350px" }} src={uploadImageURL(image)} />
                     }
                     <br /><br />
                     <TextField

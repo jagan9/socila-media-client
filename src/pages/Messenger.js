@@ -64,8 +64,7 @@ function Messengers(props) {
             }
             else {
                 setMessages(null)
-                axios.
-                    get(`https://socila-media-app.herokuapp.com/api/conversation/${props.currentUser._id}`)
+                axios.get(`https://socila-media-app.herokuapp.com/api/conversation/${props.currentUser._id}`)
                     .then(res => {
                         setConversation(res.data)
                     })
@@ -130,14 +129,14 @@ function Messengers(props) {
     }
 
     return (
-        <div style={{ maxWidth: "600px", zIndex: "1", margin: "10px auto", overflowY: "auto", WebkitOverflowScrolling: "touch" }}>
+        <div data-aos="flip-left" style={{ maxWidth: "600px", zIndex: "1", margin: "10px auto", overflowY: "auto", WebkitOverflowScrolling: "touch" }}>
             <Paper elevation={3} style={{ padding: "10px 20px", margin: "10px", backgroundColor: "rgba(255,255,255,0.3)" }}>
                 <div>
                     {
-                        conversation === null && <h2 style={{ textAlign: "center" }}>Loading ... </h2>
+                        conversation === null && messages === null && < h2 style={{ textAlign: "center" }}>Loading ... </h2>
                     }
                     {
-                        conversation?.length == 0 && <h2 style={{ textAlign: "center" }}>No users</h2>
+                        conversation?.length === 0 && <h2 style={{ textAlign: "center" }}>No users</h2>
                     }
                     {
                         !id && conversation && conversation.map(conv => (
@@ -146,9 +145,8 @@ function Messengers(props) {
                                     setConv(conv);
                                     let userID = conv.members.find(user => user !== props.currentUser._id);
                                     history.push(`/message/${userID}`)
-                                    const user = await axios.get(`/api/auth/user/${userID}`);
+                                    const user = await axios.get(`https://socila-media-app.herokuapp.com/api/auth/user/${userID}`);
                                     setImg(user.data[0].img)
-
                                 }}>
                                 <ChatUser conv={conv} key={conv._id} currentUser={props.currentUser} />
                             </div>
@@ -158,13 +156,16 @@ function Messengers(props) {
                 </div>
                 <div>
                     <div style={{ height: "70vh", marginBottom: "5px", overflowY: "auto", }}>
+
+                        {
+                            messages?.length === 0 && <h2 style={{ textAlign: "center" }}>No Chat</h2>
+                        }
                         {
                             id && messages && messages.map(msg => (
-                                <div ref={msgRef} >
+                                <div key={msg._id} ref={msgRef} >
                                     <Message
                                         currentUser={props.currentUser ? props.currentUser : null}
                                         oppositeId={id}
-                                        key={msg._id}
                                         data={msg}
                                         img={img}
                                         myMsg={msg.sender === props.currentUser._id} />

@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { format } from 'timeago.js';
 
 function Message(props) {
-    const [user, setUser] = useState(null)
 
     let myMsg = !props.myMsg ? "flex-start" : "flex-end";
 
     return (
-        <div style={{ marginBottom: "15px", display: "flex", flexDirection: "column", alignItems: myMsg }}>
+        <div data-aos="fade-up" style={{ marginBottom: "15px", display: "flex", flexDirection: "column", alignItems: myMsg }}>
             <div style={{ display: "flex", flexDirection: "row", alignItems: "flex-start" }}>
                 {
                     props.myMsg && <p style={{ backgroundColor: "grey", color: "#fff", minWidth: "50px", maxWidth: "280px", padding: "7px 12px", borderRadius: "10px" }}>{props.data.text}</p>

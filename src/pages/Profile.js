@@ -88,6 +88,16 @@ function Profile(props) {
 
     const updateProfile = () => {
         if (imgChange) {
+            if (name.length < 2) {
+                setNameError("enter Name");
+                return
+            }
+            if (text.length < 5) {
+                setTextError("enter bio");
+                return
+            }
+            setOpen(true);
+            setSnackText("Posting...");
             const data = new FormData();
             data.append('file', image);
             data.append('upload_preset', "SocialMedia");
@@ -102,19 +112,31 @@ function Profile(props) {
                     const Data = {};
                     Data["bio"] = text;
                     Data["name"] = name;
-                    Data["img"] = data.url;
+                    Data["img"] = data.secure_url;
                     props.updateProfile(Data, () => {
                         setOpen(true);
                         setSnackText("Posted yayu");
                         setImage(null);
                         setText("");
                         setName("");
+                        setNameError(null);
+                        setTextError(null);
                         setModel(false);
                         setOpen(false);
                     });
                 })
         }
         else if (valid) {
+            if (name.length < 2) {
+                setNameError("enter Name");
+                return
+            }
+            if (text.length < 5) {
+                setTextError("enter bio");
+                return
+            }
+            setOpen(true);
+            setSnackText("Posting...");
             const Data = {};
             Data["bio"] = text;
             Data["name"] = name;
@@ -126,6 +148,8 @@ function Profile(props) {
                 setText("");
                 setName("");
                 setModel(false);
+                setNameError(null);
+                setTextError(null);
                 setOpen(false);
             });
         } else {
@@ -144,7 +168,7 @@ function Profile(props) {
         <div>
             {
                 props.data && props.posts ?
-                    <div style={{ margin: "30px auto", maxWidth: "600px", zIndex: "1" }}>
+                    <div data-aos="flip-down" style={{ margin: "30px auto", maxWidth: "600px", zIndex: "1" }}>
                         <Paper elevation={3} style={{ padding: "20px 10px", margin: "10px", backgroundColor: "rgba(255,255,255,0.3)" }}>
                             <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
                                 <img alt="logo" src={props.data.img} height="120px" width="120px" style={{ objectFit: "cover", borderRadius: "50%", marginRight: "10px" }} />
@@ -177,13 +201,14 @@ function Profile(props) {
                                 }
                             </div>
                         </Paper>
-                        <Dialog onClose={handleModelclose} aria-labelledby="customized-dialog-title" open={model}>
+                        <Dialog style={{ margin: "-20px" }} onClose={handleModelclose} aria-labelledby="customized-dialog-title" open={model}>
                             <DialogTitle id="customized-dialog-title" onClose={handleModelclose}>
                                 <b>PROFILE</b>
                             </DialogTitle>
                             <DialogContent dividers>
+                                <p style={{ opacity: "0.7" }}><b>NOTE: </b>High resolution image takes much to upload, please be patient</p><br />
                                 <input type="file" onChange={(e) => { setImage(e.target.files[0]); setValid(true); setImageChange(true) }} /><br /><br />
-                                <img width="300px" height="300px" style={{ textAlign: "center", objectFit: "cover", cursor: "pointer" }} alt="img" src={uploadImageURL(image)} />
+                                <img width="100%" height="300px" style={{ textAlign: "center", objectFit: "cover", cursor: "pointer" }} alt="img" src={uploadImageURL(image)} />
                                 <br /><br />
                                 <TextField
                                     error={nameError !== null}
@@ -210,20 +235,21 @@ function Profile(props) {
                             </DialogContent>
                             <DialogActions>
                                 <Button autoFocus onClick={() => updateProfile()} color="primary">
-                                    Update Post
+                                    Update..
                                 </Button>
                             </DialogActions>
+                            <Snackbar
+                                anchorOrigin={{
+                                    vertical: 'bottom',
+                                    horizontal: 'left',
+                                }}
+                                open={open}
+                                autoHideDuration={3000}
+                                onClose={handleClose}
+                                message={snackText}
+                            />
                         </Dialog>
-                        <Snackbar
-                            anchorOrigin={{
-                                vertical: 'bottom',
-                                horizontal: 'left',
-                            }}
-                            open={open}
-                            autoHideDuration={3000}
-                            onClose={handleClose}
-                            message={snackText}
-                        />
+
                     </div> :
                     <h2 style={{ textAlign: "center" }}>loading....</h2>
             }

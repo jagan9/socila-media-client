@@ -32,7 +32,8 @@ export const LoginUser = (user, onsuccess) => {
         axios.post('https://socila-media-app.herokuapp.com/api/auth/login', user).then(user => {
             if (user.data === "invalid email") {
                 dispatch({ type: USER_ERROR, payload: user.data })
-                onsuccess()
+                onsuccess();
+                console.log(user.data);
             }
             else if (user.data === "invalid password") {
                 dispatch({ type: USER_ERROR, payload: user.data })
@@ -110,7 +111,6 @@ export const updateProfile = (data, onSuccess) => {
     return async (dispatch, getstate) => {
         try {
             const token = localStorage.getItem("token");
-            console.log("hi ")
             const updatedUser = await axios.put('https://socila-media-app.herokuapp.com/api/auth/update_user', data, {
                 headers: {
                     "x-auth-token": token

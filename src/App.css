@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* font-family: 'Baloo Tammudu 2', cursive; */
+    font-family: 'Roboto', sans-serif;
 }
 
 .App{
@@ -10,3 +10,10 @@
     padding-bottom: 40px;
     
 }
+
+@media screen and (max-width:400px) {
+    h4{
+        font-size: 13px;
+    }
+}
+

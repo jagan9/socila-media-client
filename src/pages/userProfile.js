@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
-import { useParams, useHistory, Redirect } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { Paper } from "@material-ui/core";
-import logo1 from '../Media/logo1.jpg';
 import Button from '@material-ui/core/Button';
 import PostImg from '../components/PostImg';
 const axios = require('axios');
@@ -27,7 +26,7 @@ function UserProfile(props) {
             {
                 user ?
                     <>
-                        <div style={{ margin: "30px auto", maxWidth: "600px", zIndex: "2" }}>
+                        <div data-aos="flip-down" style={{ margin: "30px auto", maxWidth: "600px", zIndex: "2" }}>
                             <Paper elevation={3} style={{ padding: "20px 10px", margin: "10px", backgroundColor: "rgba(255,255,255,0.3)" }}>
                                 <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
                                     <img alt="logo" src={user?.user?.img} height="120px" width="120px" style={{ objectFit: "cover", borderRadius: "50%", marginRight: "10px" }} />
