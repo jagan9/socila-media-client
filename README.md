@@ -18,3 +18,6 @@
 * Mongo DB for data storage - Post and user model
 * Material-UI for styling
 * Github for version control
+
+## Hosted on Netlify 
+* Have a look [link](https://mern-social-media.netlify.app/)
